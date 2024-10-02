@@ -269,17 +269,6 @@
                         <label for="as_part1">Part 1 Amount</label>
                         <input type="number" id="as_part1" placeholder="Part 1 Amount" onclick="togglePartDetails('part1')">
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="as_part2">Part 2 Amount</label>
-                        <input type="number" id="as_part2" placeholder="Part 2 Amount" onclick="togglePartDetails('part2')">
-                    </div>
-                    <div class="form-group">
-                        <label for="as_part3">Part 3 Amount</label>
-                        <input type="number" id="as_part3" placeholder="Part 3 Amount" onclick="togglePartDetails('part3')">
-                    </div>
-
-                    <!-- Part 1 Details -->
                     <div class="form-group" id="as_part1-details" style="display: none;">
                         <label for="as_part1_date">Date of Payment of Part 1 Amount</label>
                         <input type="date" id="as_part1_date" placeholder="Date of Payment">
@@ -293,8 +282,11 @@
                             <option value="bank_transfer">Bank Transfer</option>
                         </select>
                     </div>
-
-                    <!-- Part 2 Details -->
+                    
+                    <div class="form-group">
+                        <label for="as_part2">Part 2 Amount</label>
+                        <input type="number" id="as_part2" placeholder="Part 2 Amount" onclick="togglePartDetails('part2')">
+                    </div>
                     <div class="form-group" id="as_part2-details" style="display: none;">
                         <label for="as_part2_date">Date of Payment of Part 2 Amount</label>
                         <input type="date" id="as_part2_date" placeholder="Date of Payment">
@@ -308,6 +300,11 @@
                             <option value="bank_transfer">Bank Transfer</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="as_part3">Part 3 Amount</label>
+                        <input type="number" id="as_part3" placeholder="Part 3 Amount" onclick="togglePartDetails('part3')">
+                    </div>
+
 
                     <!-- Part 3 Details -->
                     <div class="form-group" id="as_part3-details" style="display: none;">
