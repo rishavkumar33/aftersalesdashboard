@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After Sales Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+        }
+        header, footer {
+            background-color: #fff;
+            color: #585454;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 3px solid #fff;
+            flex-shrink: 0; 
+        }
+        .container-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, transform 0.2s;
+            width: 100%;
+        }
+        .sub-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .form-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            transition: border-color 0.3s;
+        }
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="vahan0.jpeg" alt="Company Logo" style="width: 200px; height: 80px;">
+    <h1>After Sales Dashboard</h1>
+</header>
+
+<div class="container-wrapper">
+    <div class="container">
+        <!-- Employee Details Card -->
+        <div class="card" id="employee-details">
+            <div class="sub-box">
+                <h1>Vahan Yojana</h1>
+                <p>Address: Beaur More, Patna</p>
+                <p>Email: info@vahanyojana.com</p>
+                <p>Mobile: +91 9262725444</p>
+            </div>
+            <div class="form-group">
+                <input type="text" id="employee_id" placeholder="Employee ID" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="employee_name" placeholder="Employee Name" required>
+            </div>
+            <div class="form-group">
+                <input type="date" id="date" placeholder="Date" required>
+            </div>
+           
+            <div class="form-group">
+
+            <select id="vehicle-type" onchange="selectPage(this.value)" required>
+                <option value="">Select Vehicle Type</option>
+                <option value="two_wheeler">Two Wheeler</option>
+                <option value="three_wheeler">Three Wheeler</option>
+                <option value="four_wheeler">Four Wheeler</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+    </div>
+    <div class="card" id="aftersales-details" style="display: none;">
+            <h2>After Sales Details</h2>
+            
+            <h2 id="vehicle-title">Customer Details</h2>
+            <div class="form-group">
+                <label for="as_customer_name">Customer Name</label>
+                <input type="text" id="as_customer_name" placeholder="Customer Name" required>
+            </div>
+            <div class="form-group">
+                <label for="as_district">District</label>
+                <input type="text" id="as_district" placeholder="District" required>
+            </div>
+            <div class="form-group">
+                <label for="as_block">Block</label>
+                <input type="text" id="as_block" placeholder="Block" required>
+            </div>
+            <div class="form-group">
+                <label for="as_mobile">Mobile Number</label>
+                <input type="text" id="as_mobile" placeholder="Mobile Number" pattern="\d{10}" maxlength="10" required>
+            </div>
+            <div class="form-group">
+                <label for="as_account_number">Account Number</label>
+                <input type="text" id="as_account_number" placeholder="Account Number" required>
+            </div>
+            <div class="form-group">
+                <label for="as_ifsc_code">IFSC Code</label>
+                <input type="text" id="as_ifsc_code" placeholder="IFSC Code" required>
+            </div>
+            <div class="form-group">
+                <label for="as_address">Address</label>
+                <input type="text" id="as_address" class="full-width" placeholder="Address" required>
+            </div>
+
+            <!-- Vehicle Details -->
+            <h2>Vehicle Details</h2>
+            <div class="form-group">
+                <label for="as_vehicle_name">Vehicle Name</label>
+                <input type="text" id="as_vehicle_name" placeholder="Vehicle Name" required>
+            </div>
+            <div class="form-group">
+                <label for="as_on_road_price">On Road Price</label>
+                <input type="number" id="as_on_road_price" placeholder="On Road Price" required>
+            </div>
+            <div class="form-group">
+                <label for="as_ex_showroom_price">Ex Showroom Price</label>
+                <input type="number" id="as_ex_showroom_price" placeholder="Ex Showroom Price" required>
+            </div>
+            <div class="form-group">
+                <label for="as_discount">Discount</label>
+                <input type="number" id="as_discount" placeholder="Discount" required>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="as_rto">R.T.O</label>
+                <input type="number" id="as_rto" placeholder="R.T.O" required>
+            </div>
+            <div class="form-group">
+                <label for="as_insurance">Insurance</label>
+                <input type="number" id="as_insurance" placeholder="Insurance" required>
+            </div>
+            <div class="form-group">
+                <label for="as_hypo">Hypo</label>
+                <input type="number" id="as_hypo" placeholder="Hypo" required>
+            </div>
+            <div class="form-group">
+                <label for="as_ews">EWS</label>
+                <input type="number" id="as_ews" placeholder="EWS" required>
+            </div>
+            <div class="form-group">
+                <label for="as_agreement_paper">Agreement Paper</label>
+                <input type="number" id="as_agreement_paper" placeholder="Agreement Paper" required>
+            </div>
+            <div class="form-group">
+                <label for="as_processing_fee">Processing Fee</label>
+                <input type="number" id="as_processing_fee" placeholder="Processing Fee" required>
+            </div>
+            
+            
+            
+            <div class="form-group">
+                <label for="as_showroom_pay">Showroom Pay</label>
+                <input type="number" id="as_showroom_pay" placeholder="Showroom Pay" required>
+            </div>
+            <div class="form-group">
+                <label for="as_emi_amount">EMI Amount</label>
+                <input type="number" id="as_emi_amount" placeholder="EMI Amount" required>
+            </div>
+            <div class="form-group">
+                <label for="as_emi_date">EMI Date</label>
+                <input type="date" id="as_emi_date" placeholder="EMI Date" required>
+            </div>
+            <div class="form-group">
+                <label for="as_tenure">Tenure</label>
+                <input type="number" id="as_tenure" placeholder="Tenure" required>
+            </div>
+            <div class="form-group">
+                <label for="as_discounted_on_road_price">Discounted On Road Price</label>
+                <input type="number" id="as_discounted_on_road_price" placeholder="Discounted On Road Price" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="as_date_of_purchase">Date of Purchase</label>
+                <input type="date" id="as_date_of_purchase" placeholder="Date of Purchase" required>
+            </div>
+            
+            
+            
+
+            <!-- Payment Details -->
+            <h2>Payment Details</h2>
+            <div class="payment-options">
+                <h3>Payment to Vahan Yojana</h3>
+                <div class="form-group">
+                    <label for="as_payment_type">Select Payment Type</label>
+                    <select id="as_payment_type" onchange="togglePaymentOptions(this.value)" required>
+                        <option value="">Select Payment Type</option>
+                        <option value="partial">Partial Payment</option>
+                        <option value="full">Full Payment</option>
+                    </select>
+                </div>
+
+                <!-- Partial Payment Details -->
+                <div class="payment-options" id="as_partial-payment" style="display: none;">
+                    <h4>Partial Payment</h4>
+                    <div class="form-group">
+                        <label for="as_part1">Part 1 Amount</label>
+                        <input type="number" id="as_part1" placeholder="Part 1 Amount" onclick="togglePartDetails('part1')">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="as_part2">Part 2 Amount</label>
+                        <input type="number" id="as_part2" placeholder="Part 2 Amount" onclick="togglePartDetails('part2')">
+                    </div>
+                    <div class="form-group">
+                        <label for="as_part3">Part 3 Amount</label>
+                        <input type="number" id="as_part3" placeholder="Part 3 Amount" onclick="togglePartDetails('part3')">
+                    </div>
+
+                    <!-- Part 1 Details -->
+                    <div class="form-group" id="as_part1-details" style="display: none;">
+                        <label for="as_part1_date">Date of Payment of Part 1 Amount</label>
+                        <input type="date" id="as_part1_date" placeholder="Date of Payment">
+                        <label for="as_part1_mode">Mode of Payment of Part 1 Amount</label>
+                        <select id="as_part1_mode">
+                            <option value="">Mode of Payment</option>
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="account_transfer">Account Transfer</option>
+                            <option value="mobile_payments">Mobile Payments</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+
+                    <!-- Part 2 Details -->
+                    <div class="form-group" id="as_part2-details" style="display: none;">
+                        <label for="as_part2_date">Date of Payment of Part 2 Amount</label>
+                        <input type="date" id="as_part2_date" placeholder="Date of Payment">
+                        <label for="as_part2_mode">Mode of Payment of Part 2 Amount</label>
+                        <select id="as_part2_mode">
+                            <option value="">Mode of Payment</option>
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="account_transfer">Account Transfer</option>
+                            <option value="mobile_payments">Mobile Payments</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+
+                    <!-- Part 3 Details -->
+                    <div class="form-group" id="as_part3-details" style="display: none;">
+                        <label for="as_part3_date">Date of Payment of Part 3 Amount</label>
+                        <input type="date" id="as_part3_date" placeholder="Date of Payment">
+                        <label for="as_part3_mode">Mode of Payment of Part 3 Amount</label>
+                        <select id="as_part3_mode">
+                            <option value="">Mode of Payment</option>
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="account_transfer">Account Transfer</option>
+                            <option value="mobile_payments">Mobile Payments</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Full Payment Details -->
+                <div class="payment-options" id="as_full-payment" style="display: none;">
+                    <h4>Full Payment</h4>
+                    <div class="form-group">
+                        <label for="as_full_amount">Full Amount</label>
+                        <input type="number" id="as_full_amount" placeholder="Full Amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="as_full_date">Date of Payment</label>
+                        <input type="date" id="as_full_date" placeholder="Date of Payment" required>
+                        <label for="as_full_mode">Mode of Payment</label>
+                        <select id="as_full_mode" required>
+                            <option value="">Mode of Payment</option>
+                            <option value="cash">Cash</option>
+                            <option value="cheque">Cheque</option>
+                            <option value="account_transfer">Account Transfer</option>
+                            <option value="mobile_payments">Mobile Payments</option>
+                            <option value="bank_transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submission Buttons -->
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+                <button onclick="goBack()">Back</button>
+                <button onclick="submitAfterSalesForm()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    &copy; 2024 Vahan Yojana. All rights reserved.
+</footer>
+<script>
+    function selectPage(page) {
+        const employeeId = document.getElementById('employee_id').value;
+        const employeeName = document.getElementById('employee_name').value;
+        const date = document.getElementById('date').value;
+    
+        // Validate Employee ID, Employee Name, and Date
+        if (!employeeId || !employeeName || !date) {
+            alert('Please fill out Employee ID, Employee Name, and Date before selecting a vehicle type.');
+            document.getElementById('vehicle-type').value = ''; // Reset the vehicle type dropdown
+            return;
+        }
+    
+        // Hide all pages and show the vehicle page
+        document.getElementById('employee-details').style.display = 'none';
+        document.getElementById('aftersales-details').style.display = 'block';
+    
+        // Change the title based on vehicle type
+        document.getElementById('vehicle-title').innerText = `${page.replace('_', ' ').toLowerCase()} customer details`;
+    }
+    
+    function togglePaymentOptions(paymentType) {
+        if (paymentType === 'partial') {
+            document.getElementById('as_partial-payment').style.display = 'block';
+            document.getElementById('as_full-payment').style.display = 'none';
+        } else if (paymentType === 'full') {
+            document.getElementById('as_partial-payment').style.display = 'none';
+            document.getElementById('as_full-payment').style.display = 'block';
+        } else {
+            document.getElementById('as_partial-payment').style.display = 'none';
+            document.getElementById('as_full-payment').style.display = 'none';
+        }
+    }
+    
+    // Function to toggle part details in partial payment
+    function togglePartDetails(part) {
+        const partDetails = document.getElementById(`as_${part}-details`);
+        if (partDetails) {
+            partDetails.style.display = partDetails.style.display === 'none' ? 'block' : 'none';
+        }
+    }
+    
+    // Function to navigate back to the Employee Details page
+    function goBack() {
+        document.getElementById('aftersales-details').style.display = 'none'; // Hide After Sales Details
+        document.getElementById('employee-details').style.display = 'block'; // Show Employee Details
+        document.getElementById('vehicle-type').value = '';
+    }
+    
+    function validateAftersalesFields() {
+        const requiredFields = [
+            'employee_id', 'employee_name', 'date', 'vehicle-type',
+            'as_customer_name', 'as_district', 'as_block', 'as_mobile', 'as_account_number',
+            'as_ifsc_code', 'as_address', 'as_vehicle_name', 'as_on_road_price',
+            'as_ex_showroom_price', 'as_discount', 'as_rto', 'as_insurance', 'as_hypo',
+            'as_ews', 'as_agreement_paper', 'as_processing_fee', 'as_showroom_pay',
+            'as_emi_amount', 'as_emi_date', 'as_tenure', 'as_discounted_on_road_price',
+            'as_date_of_purchase', 'as_payment_type'
+        ];
+    
+        for (let field of requiredFields) {
+            const value = document.getElementById(field).value.trim();
+            if (!value) {
+                alert('Please fill all the required fields.');
+                return false;
+            }
+        }
+    
+        // Validate mobile number
+        const mobile = document.getElementById('as_mobile').value.trim();
+        const mobilePattern = /^\d{10}$/;
+        if (!mobilePattern.test(mobile)) {
+            alert('Please enter a valid 10-digit mobile number.');
+            return false;
+        }
+    
+        // Validate payment details
+        const paymentType = document.getElementById('as_payment_type').value;
+        if (paymentType === 'partial') {
+            const part1 = document.getElementById('as_part1').value.trim();
+    
+            if (!part1) {
+                alert('Please fill partial payment amounts.');
+                return false;
+            }
+    
+            // Validate part1 details
+            const part1Date = document.getElementById('as_part1_date').value.trim();
+            const part1Mode = document.getElementById('as_part1_mode').value.trim();
+    
+            if (!part1Date || !part1Mode) {
+                alert('Please fill partial payment details.');
+                return false;
+            }
+        } else if (paymentType === 'full') {
+            const fullAmount = document.getElementById('as_full_amount').value.trim();
+            const fullDate = document.getElementById('as_full_date').value.trim();
+            const fullMode = document.getElementById('as_full_mode').value.trim();
+    
+            if (!fullAmount || !fullDate || !fullMode) {
+                alert('Please fill all full payment details.');
+                return false;
+            }
+        }
+    
+        return true; // Validation passed
+    }
+    
+    function submitAfterSalesForm() {
+        const employeeId = document.getElementById('employee_id').value;
+        const employeeName = document.getElementById('employee_name').value;
+        const date = document.getElementById('date').value;
+    
+        // Check if the Employee ID, Employee Name, and Date are filled
+        if (!employeeId || !employeeName || !date) {
+            alert('Please fill out Employee ID, Employee Name, and Date.');
+            return;
+        }
+    
+        // Validate fields specific to the vehicle form
+        if (!validateAftersalesFields()) {
+            return; // Stop the form submission if validation fails
+        }
+    
+        // Gather data from the single form
+        const data = {
+            employee_id: document.getElementById('employee_id').value.trim(),
+            employee_name: document.getElementById('employee_name').value.trim(),
+            entry_date: document.getElementById('date').value.trim(),
+            after_sales_type: document.getElementById('vehicle-type').value.trim(),
+            as_customer_name: document.getElementById('as_customer_name').value.trim(),
+            as_district: document.getElementById('as_district').value.trim(),
+            as_block: document.getElementById('as_block').value.trim(),
+            as_mobile: document.getElementById('as_mobile').value.trim(),
+            as_account_number: document.getElementById('as_account_number').value.trim(),
+            as_ifsc_code: document.getElementById('as_ifsc_code').value.trim(),
+            as_address: document.getElementById('as_address').value.trim(),
+            as_vehicle_name: document.getElementById('as_vehicle_name').value.trim(),
+            as_on_road_price: document.getElementById('as_on_road_price').value.trim(),
+            as_ex_showroom_price: document.getElementById('as_ex_showroom_price').value.trim(),
+            as_discount: document.getElementById('as_discount').value.trim(),
+            as_discounted_on_road_price: document.getElementById('as_discounted_on_road_price').value.trim(),
+            as_rto: document.getElementById('as_rto').value.trim(),
+            as_insurance: document.getElementById('as_insurance').value.trim(),
+            as_processing_fee: document.getElementById('as_processing_fee').value.trim(),
+            as_hypo: document.getElementById('as_hypo').value.trim(),
+            as_agreement_paper: document.getElementById('as_agreement_paper').value.trim(),
+            as_tenure: document.getElementById('as_tenure').value.trim(),
+            as_ews: document.getElementById('as_ews').value.trim(),
+            as_payment_type: document.getElementById('as_payment_type').value.trim(),
+            as_showroom_pay: document.getElementById('as_showroom_pay').value.trim(),
+            as_emi_amount: document.getElementById('as_emi_amount').value.trim(),
+            as_emi_date: document.getElementById('as_emi_date').value.trim(),
+            as_date_of_purchase: document.getElementById('as_date_of_purchase').value.trim(),
+        };
+    
+        // Handle partial payment details
+        if (data.as_payment_type === 'partial') {
+            data.as_part1_amount = document.getElementById('as_part1').value.trim();
+            data.as_part1_date = document.getElementById('as_part1_date').value.trim();
+            data.as_part1_mode = document.getElementById('as_part1_mode').value.trim();
+            data.as_part2_amount = document.getElementById('as_part2').value.trim();
+            data.as_part2_date = document.getElementById('as_part2_date').value.trim();
+            data.as_part2_mode = document.getElementById('as_part2_mode').value.trim();
+            data.as_part3_amount = document.getElementById('as_part3').value.trim();
+            data.as_part3_date = document.getElementById('as_part3_date').value.trim();
+            data.as_part3_mode = document.getElementById('as_part3_mode').value.trim();
+        }
+    
+        // Handle full payment details
+        if (data.as_payment_type === 'full') {
+            data.as_full_amount = document.getElementById('as_full_amount').value.trim();
+            data.as_full_date = document.getElementById('as_full_date').value.trim();
+            data.as_full_mode = document.getElementById('as_full_mode').value.trim();
+        }
+    
+        // Use fetch API to submit the form data
+            fetch('https://script.google.com/macros/s/AKfycbxDWefrvypsT_KkY_v_p_35oVO-2fx-_1x-yiblebpFcp2FmJtquilM2GBiwqKFegDVBw/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data)
+        })
+        .then(response => response.json()) // This will work in CORS mode
+        .then(result => {
+            alert('Aftersales Form Submitted Successfully!');
+            resetForm();
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('There was an error submitting the form. Please try again.');
+        });
+
+    }
+</script>
+    
+
+
+
+</body>
+</html>
