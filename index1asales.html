@@ -50,6 +50,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.3s, transform 0.2s;
             width: 100%;
+            margin-bottom: 20px;
         }
         .sub-box {
             background-color: #f9f9f9;
@@ -115,7 +116,7 @@
         <div class="card" id="employee-details">
             <div class="sub-box">
                 <h1>Vahan Yojana</h1>
-                <p>Address: Beaur More, Patna</p>
+                <p>Address: Beur More, Patna</p>
                 <p>Email: info@vahanyojana.com</p>
                 <p>Mobile: +91 9262725444</p>
             </div>
@@ -130,23 +131,27 @@
             </div>
            
             <div class="form-group">
-
-            <select id="vehicle-type" onchange="selectPage(this.value)" required>
-                <option value="">Select Vehicle Type</option>
-                <option value="two_wheeler">Two Wheeler</option>
-                <option value="three_wheeler">Three Wheeler</option>
-                <option value="four_wheeler">Four Wheeler</option>
-                <option value="other">Other</option>
-            </select>
+                <select id="vehicle-type" onchange="selectPage(this.value)" required>
+                    <option value="">Select Vehicle Type</option>
+                    <option value="two_wheeler">Two Wheeler</option>
+                    <option value="three_wheeler">Three Wheeler</option>
+                    <option value="four_wheeler">Four Wheeler</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="card" id="aftersales-details" style="display: none;">
-            <h2>After Sales Details</h2>
-            
+
+        <!-- After Sales Details Card -->
+        <div class="card" id="aftersales-details" style="display: none;">
             <h2 id="vehicle-title">Customer Details</h2>
+            <!-- Customer Details -->
             <div class="form-group">
                 <label for="as_customer_name">Customer Name</label>
                 <input type="text" id="as_customer_name" placeholder="Customer Name" required>
+            </div>
+            <div class="form-group">
+                <label for="as_mobile">Mobile Number</label>
+                <input type="text" id="as_mobile" placeholder="Mobile Number" pattern="\d{10}" maxlength="10" required>
             </div>
             <div class="form-group">
                 <label for="as_district">District</label>
@@ -156,10 +161,13 @@
                 <label for="as_block">Block</label>
                 <input type="text" id="as_block" placeholder="Block" required>
             </div>
-            <div class="form-group">
-                <label for="as_mobile">Mobile Number</label>
-                <input type="text" id="as_mobile" placeholder="Mobile Number" pattern="\d{10}" maxlength="10" required>
+             <div class="form-group">
+                <label for="as_address">Address</label>
+                <input type="text" id="as_address" class="full-width" placeholder="Address" required>
             </div>
+            
+            <!-- Bank Details -->
+            <h2>Bank Details</h2>
             <div class="form-group">
                 <label for="as_account_number">Account Number</label>
                 <input type="text" id="as_account_number" placeholder="Account Number" required>
@@ -168,11 +176,7 @@
                 <label for="as_ifsc_code">IFSC Code</label>
                 <input type="text" id="as_ifsc_code" placeholder="IFSC Code" required>
             </div>
-            <div class="form-group">
-                <label for="as_address">Address</label>
-                <input type="text" id="as_address" class="full-width" placeholder="Address" required>
-            </div>
-
+            
             <!-- Vehicle Details -->
             <h2>Vehicle Details</h2>
             <div class="form-group">
@@ -191,8 +195,6 @@
                 <label for="as_discount">Discount</label>
                 <input type="number" id="as_discount" placeholder="Discount" required>
             </div>
-
-            
             <div class="form-group">
                 <label for="as_rto">R.T.O</label>
                 <input type="number" id="as_rto" placeholder="R.T.O" required>
@@ -206,20 +208,17 @@
                 <input type="number" id="as_hypo" placeholder="Hypo" required>
             </div>
             <div class="form-group">
-                <label for="as_ews">EWS</label>
-                <input type="number" id="as_ews" placeholder="EWS" required>
+                <label for="as_ews">Apply Fee + EWS + Roadside Assistance</label>
+                <input type="number" id="as_ews" placeholder="Apply Fee + EWS + Roadside Assistance" required>
             </div>
             <div class="form-group">
-                <label for="as_agreement_paper">Agreement Paper</label>
+                <label for="as_agreement_paper">Agreement Paper Fee</label>
                 <input type="number" id="as_agreement_paper" placeholder="Agreement Paper" required>
             </div>
             <div class="form-group">
                 <label for="as_processing_fee">Processing Fee</label>
                 <input type="number" id="as_processing_fee" placeholder="Processing Fee" required>
             </div>
-            
-            
-            
             <div class="form-group">
                 <label for="as_showroom_pay">Showroom Pay</label>
                 <input type="number" id="as_showroom_pay" placeholder="Showroom Pay" required>
@@ -229,26 +228,26 @@
                 <input type="number" id="as_emi_amount" placeholder="EMI Amount" required>
             </div>
             <div class="form-group">
-                <label for="as_emi_date">EMI Date</label>
-                <input type="date" id="as_emi_date" placeholder="EMI Date" required>
+                <label for="as_emi_date">First EMI Date</label>
+                <input type="date" id="as_emi_date" placeholder="First EMI Date" required>
             </div>
             <div class="form-group">
-                <label for="as_tenure">Tenure</label>
-                <input type="number" id="as_tenure" placeholder="Tenure" required>
+                <label for="as_emi_last_date">Last EMI Date</label>
+                <input type="date" id="as_emi_last_date" placeholder="Last EMI Date" required>
+            </div>
+            <div class="form-group">
+                <label for="as_tenure">Loan Tenure</label>
+                <input type="number" id="as_tenure" placeholder="Loan Tenure" required>
             </div>
             <div class="form-group">
                 <label for="as_discounted_on_road_price">Discounted On Road Price</label>
                 <input type="number" id="as_discounted_on_road_price" placeholder="Discounted On Road Price" required>
             </div>
-            
             <div class="form-group">
                 <label for="as_date_of_purchase">Date of Purchase</label>
                 <input type="date" id="as_date_of_purchase" placeholder="Date of Purchase" required>
             </div>
             
-            
-            
-
             <!-- Payment Details -->
             <h2>Payment Details</h2>
             <div class="payment-options">
@@ -271,9 +270,9 @@
                     </div>
                     <div class="form-group" id="as_part1-details" style="display: none;">
                         <label for="as_part1_date">Date of Payment of Part 1 Amount</label>
-                        <input type="date" id="as_part1_date" placeholder="Date of Payment">
+                        <input type="date" id="as_part1_date" placeholder="Date of Payment" required>
                         <label for="as_part1_mode">Mode of Payment of Part 1 Amount</label>
-                        <select id="as_part1_mode">
+                        <select id="as_part1_mode" required>
                             <option value="">Mode of Payment</option>
                             <option value="cash">Cash</option>
                             <option value="cheque">Cheque</option>
@@ -289,9 +288,9 @@
                     </div>
                     <div class="form-group" id="as_part2-details" style="display: none;">
                         <label for="as_part2_date">Date of Payment of Part 2 Amount</label>
-                        <input type="date" id="as_part2_date" placeholder="Date of Payment">
+                        <input type="date" id="as_part2_date" placeholder="Date of Payment" required>
                         <label for="as_part2_mode">Mode of Payment of Part 2 Amount</label>
-                        <select id="as_part2_mode">
+                        <select id="as_part2_mode" required>
                             <option value="">Mode of Payment</option>
                             <option value="cash">Cash</option>
                             <option value="cheque">Cheque</option>
@@ -305,13 +304,12 @@
                         <input type="number" id="as_part3" placeholder="Part 3 Amount" onclick="togglePartDetails('part3')">
                     </div>
 
-
                     <!-- Part 3 Details -->
                     <div class="form-group" id="as_part3-details" style="display: none;">
                         <label for="as_part3_date">Date of Payment of Part 3 Amount</label>
-                        <input type="date" id="as_part3_date" placeholder="Date of Payment">
+                        <input type="date" id="as_part3_date" placeholder="Date of Payment" required>
                         <label for="as_part3_mode">Mode of Payment of Part 3 Amount</label>
-                        <select id="as_part3_mode">
+                        <select id="as_part3_mode" required>
                             <option value="">Mode of Payment</option>
                             <option value="cash">Cash</option>
                             <option value="cheque">Cheque</option>
@@ -347,8 +345,8 @@
 
             <!-- Submission Buttons -->
             <div style="display: flex; justify-content: space-between; width: 100%;">
-                <button onclick="goBack()">Back</button>
-                <button onclick="submitAfterSalesForm()">Submit</button>
+                <button type="button" onclick="goBack()">Back</button>
+                <button type="button" onclick="submitAfterSalesForm()">Submit</button>
             </div>
         </div>
     </div>
@@ -357,6 +355,7 @@
 <footer class="footer">
     &copy; 2024 Vahan Yojana. All rights reserved.
 </footer>
+
 <script>
     function selectPage(page) {
         const employeeId = document.getElementById('employee_id').value;
@@ -370,12 +369,13 @@
             return;
         }
     
-        // Hide all pages and show the vehicle page
+        // Hide all pages and show the aftersales details page
         document.getElementById('employee-details').style.display = 'none';
         document.getElementById('aftersales-details').style.display = 'block';
     
         // Change the title based on vehicle type
-        document.getElementById('vehicle-title').innerText = `${page.replace('_', ' ').toLowerCase()} customer details`;
+        const formattedPage = page.replace('_', ' ').toLowerCase();
+        document.getElementById('vehicle-title').innerText = `${formattedPage.charAt(0).toUpperCase() + formattedPage.slice(1)} Customer Details`;
     }
     
     function togglePaymentOptions(paymentType) {
@@ -404,24 +404,92 @@
         document.getElementById('aftersales-details').style.display = 'none'; // Hide After Sales Details
         document.getElementById('employee-details').style.display = 'block'; // Show Employee Details
         document.getElementById('vehicle-type').value = '';
+        resetPartialPaymentDetails();
+        resetFullPaymentDetails();
+    }
+
+    // Function to reset partial payment details
+    function resetPartialPaymentDetails() {
+        const partialFields = ['as_part1', 'as_part1_date', 'as_part1_mode', 
+                               'as_part2', 'as_part2_date', 'as_part2_mode', 
+                               'as_part3', 'as_part3_date', 'as_part3_mode'];
+        partialFields.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.value = '';
+            }
+        });
+        ['as_part1-details', 'as_part2-details', 'as_part3-details'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.style.display = 'none';
+            }
+        });
+    }
+
+    // Function to reset full payment details
+    function resetFullPaymentDetails() {
+        const fullFields = ['as_full_amount', 'as_full_date', 'as_full_mode'];
+        fullFields.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.value = '';
+            }
+        });
+    }
+
+    // Function to reset the entire form
+    function resetForm() {
+        // Reset Employee Details
+        document.getElementById('employee_id').value = '';
+        document.getElementById('employee_name').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('vehicle-type').value = '';
+
+        // Reset After Sales Details
+        const aftersalesFields = [
+            'as_customer_name', 'as_mobile', 'as_district', 'as_block', 'as_address',
+            'as_account_number', 'as_ifsc_code', 'as_vehicle_name', 'as_on_road_price',
+            'as_ex_showroom_price', 'as_discount', 'as_rto', 'as_insurance', 'as_hypo',
+            'as_ews', 'as_agreement_paper', 'as_processing_fee', 'as_showroom_pay',
+            'as_emi_amount', 'as_emi_date', 'as_emi_last_date', 'as_tenure',
+            'as_discounted_on_road_price', 'as_date_of_purchase', 'as_payment_type'
+        ];
+        aftersalesFields.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.value = '';
+            }
+        });
+
+        // Reset Payment Details
+        resetPartialPaymentDetails();
+        resetFullPaymentDetails();
+
+        // Hide After Sales Details and show Employee Details
+        document.getElementById('aftersales-details').style.display = 'none';
+        document.getElementById('employee-details').style.display = 'block';
     }
     
-    function validateAftersalesFields() {
+    function validateAftersalesFields(){ {
         const requiredFields = [
             'employee_id', 'employee_name', 'date', 'vehicle-type',
             'as_customer_name', 'as_district', 'as_block', 'as_mobile', 'as_account_number',
             'as_ifsc_code', 'as_address', 'as_vehicle_name', 'as_on_road_price',
             'as_ex_showroom_price', 'as_discount', 'as_rto', 'as_insurance', 'as_hypo',
             'as_ews', 'as_agreement_paper', 'as_processing_fee', 'as_showroom_pay',
-            'as_emi_amount', 'as_emi_date', 'as_tenure', 'as_discounted_on_road_price',
+            'as_emi_amount', 'as_emi_date', 'as_emi_last_date','as_tenure', 'as_discounted_on_road_price',
             'as_date_of_purchase', 'as_payment_type'
         ];
     
         for (let field of requiredFields) {
-            const value = document.getElementById(field).value.trim();
-            if (!value) {
-                alert('Please fill all the required fields.');
+                        const element = document.getElementById(field);
+            if (element && !element.value.trim()) {
+                alert(`Please fill the "${element.previousElementSibling.innerText}" field.`);
+                element.focus();
                 return false;
+            }
+    
             }
         }
     
@@ -430,6 +498,7 @@
         const mobilePattern = /^\d{10}$/;
         if (!mobilePattern.test(mobile)) {
             alert('Please enter a valid 10-digit mobile number.');
+            document.getElementById('as_mobile').focus();
             return false;
         }
     
@@ -437,19 +506,25 @@
         const paymentType = document.getElementById('as_payment_type').value;
         if (paymentType === 'partial') {
             const part1 = document.getElementById('as_part1').value.trim();
+            const part2 = document.getElementById('as_part2').value.trim();
+            const part3 = document.getElementById('as_part3').value.trim();
     
-            if (!part1) {
-                alert('Please fill partial payment amounts.');
+            if (!part1 && !part2 && !part3) {
+                alert('Please fill at least one partial payment amount.');
                 return false;
             }
     
-            // Validate part1 details
-            const part1Date = document.getElementById('as_part1_date').value.trim();
-            const part1Mode = document.getElementById('as_part1_mode').value.trim();
-    
-            if (!part1Date || !part1Mode) {
-                alert('Please fill partial payment details.');
-                return false;
+            // If any part is filled, ensure its details are also filled
+            for (let part = 1; part <=3; part++) {
+                const amount = document.getElementById('as_part${part}').value.trim();
+                if (amount) {
+                    const date = document.getElementById('as_part${part}_date').value.trim();
+                    const mode = document.getElementById('as_part${part}_mode').value.trim();
+                    if (!date || !mode) {
+                        alert('Please fill the date and mode for Part ${part} payment.');
+                        return false;
+                    }
+                }
             }
         } else if (paymentType === 'full') {
             const fullAmount = document.getElementById('as_full_amount').value.trim();
@@ -481,7 +556,7 @@
             return; // Stop the form submission if validation fails
         }
     
-        // Gather data from the single form
+        // Gather data from the form
         const data = {
             employee_id: document.getElementById('employee_id').value.trim(),
             employee_name: document.getElementById('employee_name').value.trim(),
@@ -510,6 +585,7 @@
             as_showroom_pay: document.getElementById('as_showroom_pay').value.trim(),
             as_emi_amount: document.getElementById('as_emi_amount').value.trim(),
             as_emi_date: document.getElementById('as_emi_date').value.trim(),
+            as_emi_last_date: document.getElementById('as_emi_last_date').value.trim(),
             as_date_of_purchase: document.getElementById('as_date_of_purchase').value.trim(),
         };
     
@@ -534,7 +610,7 @@
         }
     
         // Use fetch API to submit the form data
-            fetch('https://script.google.com/macros/s/AKfycbxDWefrvypsT_KkY_v_p_35oVO-2fx-_1x-yiblebpFcp2FmJtquilM2GBiwqKFegDVBw/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbx9SWqlc0CxpaqOeeMvo9DcVusFJlcu8AbhTGyC1cpZZd69hBj9eBIT4T1DgVRENlfhNg/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -550,12 +626,8 @@
             console.error('Error!', error.message);
             alert('There was an error submitting the form. Please try again.');
         });
-
     }
 </script>
-    
-
-
 
 </body>
 </html>
